@@ -28,3 +28,14 @@ WHERE DATE(payment_date) IN ('2020-04-28','2020-04-29','2020-04-30')
 GROUP BY customer_id,DATE(payment_date)
 HAVING COUNT(payment_id) >1
 ORDER BY AVG(amount) DESC
+
+---BUOI7---
+select 
+CASE
+	WHEN AMOUNT < 20000 THEN 'Low price ticket'
+	WHEN AMOUNT BETWEEN 20000 AND 150000 THEN 'Mid price ticket'
+	ELSE 'Hight price ticket'
+end category,
+count (ticket_no)
+FROM BOOKINGS.TICKET_FLIGHTS
+group by category
