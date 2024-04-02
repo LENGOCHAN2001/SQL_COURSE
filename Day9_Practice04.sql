@@ -19,3 +19,23 @@ END AS  triangle
 From Triangle
 
 ---Bai03---
+SELECT 
+ROUND(CAST(100*SUM(
+CASE
+  WHEN call_category = 'n/a' or call_category is null then 1
+  Else 0
+End)/COUNT(*) AS DECIMAL),1) AS call_percentage
+FROM callers
+
+---Bai04---
+SELECT name from Customer
+where referee_id <> 2 or referee_id is null
+
+---Bai05---
+select
+survived,
+sum(case when pclass = 1 then 1 else 0 end) as  first_class,
+sum(case when pclass = 2 then 1 else 0 end) as  second_classs,
+sum(case when pclass = 3 then 1 else 0 end) as  third_class
+from titanic
+group by survived
