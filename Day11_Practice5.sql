@@ -45,4 +45,5 @@ AND products.product_name LIKE '%Azure%'
 GROUP BY customer_contracts.customer_id 
 HAVING COUNT(products.product_category)=3 
 
-----
+----Bai05---
+
