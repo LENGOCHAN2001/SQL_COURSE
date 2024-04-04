@@ -47,3 +47,21 @@ HAVING COUNT(products.product_category)=3
 
 ----Bai05---
 
+---Bai06---
+Select 
+Products.product_name, sum(Orders.unit) as unit
+From Orders 
+Left join Products 
+on Orders.product_id = Products.product_id
+where extract(month from Orders.order_date) = 2 and extract(year from Orders.order_date) = 2020
+Group by Products.product_name 
+having  sum(Orders.unit) >=100
+
+---Bai07---
+SELECT pages.page_id
+FROM pages 
+LEFT JOIN 
+(select distinct page_id from page_likes) as page_likes1_change
+on pages.page_id = page_likes1_change.page_id
+where page_likes1_change.page_id is null 
+
