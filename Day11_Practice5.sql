@@ -1,6 +1,13 @@
 ---Bai01--
+select
+COUNTRY.Continent, floor(avg(CITY.Population))
+from city 
+left join country
+on CITY.CountryCode = COUNTRY.Code 
+group by COUNTRY.Continent 
+having COUNTRY.Continent is not null
 
----Bai02---
+  ---Bai02---
 SELECT 
 round(cast(sum(
 CASE
