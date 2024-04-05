@@ -46,6 +46,15 @@ GROUP BY customer_contracts.customer_id
 HAVING COUNT(products.product_category)=3 
 
 ----Bai05---
+SELECT
+mng.employee_id, mng.name,count(emp.employee_id) as reports_count, round(avg(emp.age),0) as average_age
+FROM
+Employees as mng
+left JOIN Employees as emp
+ON mng.employee_id =emp.reports_to
+group by mng.employee_id, mng.name
+having count(emp.employee_id) >=1 
+order by employee_id
 
 ---Bai06---
 Select 
