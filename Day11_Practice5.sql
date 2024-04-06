@@ -105,4 +105,43 @@ order by count (*) desc
 limit 1
 
 ---Bai05---
+select actor.last_name, actor.first_name,count(film_actor.film_id)
+from film_actor
+left join actor
+on film_actor.actor_id=actor.actor_id
+group by actor.last_name, actor.first_name
+order by count(film_actor.film_id) desc 
+limit 1
+
+---Bai06--
+select count(address.address_id)
+from address
+left join customer
+on address.address_id=customer.address_id
+where customer.customer_id is null
+
+---Bai07---
+select city.city,sum(payment.amount)
+from payment 
+join customer on payment.customer_id=customer.customer_id
+join address on customer.address_id=address.address_id
+join city on address.city_id= city.city_id
+group by city.city
+order by sum(payment.amount) desc
+limit 1
+
+---Bai08--
+select (city.city)||','||' '||(country.country) AS city_country,sum(payment.amount)
+from payment 
+join customer on payment.customer_id=customer.customer_id
+join address on customer.address_id=address.address_id
+join city on address.city_id= city.city_id
+join country on city.city_id=country.country_id
+group by city.city,country.country
+order by sum(payment.amount) desc
+limit 1
+
+
+
+
 
