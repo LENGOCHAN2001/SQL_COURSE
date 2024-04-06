@@ -74,3 +74,35 @@ LEFT JOIN
 on pages.page_id = page_likes1_change.page_id
 where page_likes1_change.page_id is null 
 
+---MID TEST---
+--Bai01--
+SELECT DISTINCT replacement_cost from film
+ORDER BY replacement_cost 
+LIMIT 1
+
+---Bai02--
+SELECT 
+SUM(CASE
+WHEN replacement_cost>=9.99 and replacement_cost<=19.99 then 1 ELSE 0 END) AS LOW
+from film 
+
+---Bai03---
+Select film.title,film.length, category.name  
+from film
+join film_category on film.film_id=film_category.film_id
+join category on film_category.category_id=category.category_id
+where category.name in ('Drama','Sports')
+order by film.length desc 
+limit 1
+
+---Bai04---
+Select category.name, count (*) 
+from film
+join film_category on film.film_id=film_category.film_id
+join category on film_category.category_id=category.category_id
+group by category.name
+order by count (*) desc
+limit 1
+
+---Bai05---
+
