@@ -45,6 +45,14 @@ AND products.product_name LIKE '%Azure%'
 GROUP BY customer_contracts.customer_id 
 HAVING COUNT(products.product_category)=3 
 
+--CHỮA BÀI 04---
+SELECT customer_id
+from customer_contracts 
+inner join products
+on customer_contracts.product_id=products.product_id
+group by customer_id
+having count (distinct products.product_category) = 3
+
 ----Bai05---
 SELECT
 mng.employee_id, mng.name,count(emp.employee_id) as reports_count, round(avg(emp.age),0) as average_age
