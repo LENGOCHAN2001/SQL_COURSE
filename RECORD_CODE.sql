@@ -39,3 +39,19 @@ end category,
 count (ticket_no)
 FROM BOOKINGS.TICKET_FLIGHTS
 group by category
+
+
+---PROJECT1(BUỔI 19)---
+--Cách chuyển sang dữ liệu dạng timestamp--
+-- Create a temporary TIMESTAMP column
+ALTER TABLE sales_dataset_rfm_prj  ADD COLUMN create_time_holder TIMESTAMP without time zone NULL;
+
+-- Copy casted value over to the temporary column
+UPDATE sales_dataset_rfm_prj SET create_time_holder = orderdate::TIMESTAMP;
+
+-- Modify original column using the temporary column
+ALTER TABLE sales_dataset_rfm_prj ALTER COLUMN orderdate TYPE TIMESTAMP without time zone USING create_time_holder;
+
+-- Drop the temporary column (after examining altered column values)
+ALTER TABLE sales_dataset_rfm_prj DROP COLUMN create_time_holder;
+
